@@ -181,11 +181,14 @@ long getfeatureflags() {
       if (printsupport != 0) printf("AVX Supported.\n");
       ret |= SIMD_SUPPORT_FOR_AVX;
     }
+    /* This does not work!!
+    ecx = 0;
     __get_cpuid(7, &eax, &ebx, &ecx, &edx);
     if (ebx & (1 << 5)) {
       if (printsupport != 0) printf("AVX2 Supported.\n");
       ret |= SIMD_SUPPORT_FOR_AVX2;
     }
+    */
     return ret;
 }
 
@@ -433,9 +436,11 @@ int main(int argc, char*argv[])
       if (SIMD_SUPPORT == SIMD_SUPPORT_FOR_SSE2) {
         fprintf(stderr, "%li : This program %s requires SSE2 support.\n", time(0), argv[0]);
       }
+    /* Does not work for AVX2
       if (SIMD_SUPPORT == SIMD_SUPPORT_FOR_AVX2) {
         fprintf(stderr, "%li : This program %s requires AVX2 support.\n", time(0), argv[0]);
       }
+    */
       exit(1);
     }
     char userstring[16];      
