@@ -5,7 +5,7 @@
 #include <immintrin.h>
 #include <xmmintrin.h>
 #include <cpuid.h>
-#include </home/simon/cdatatypes.c>
+#include </home/simon/writeable/cdatatypes.c>
 
 // gcc featureflags2.c -o featureflags2.bin -msse2 -lm -fstrict-aliasing -Wstrict-aliasing=2 -O3 -std=c99 -Wall 
 // gcc featureflags2.c -o featureflags2.bin -mavx2 -lm -fstrict-aliasing -Wstrict-aliasing=2 -O3 -std=c99 -Wall 
@@ -431,18 +431,18 @@ int main(int argc, char*argv[])
 {
     if (IS_LINUX != 'Y') exit(1);
     assert_type_sizes(ASSERT_TYPE_SIZE_LL_64 | ASSERT_TYPE_SIZE_VOID_8 | ASSERT_TYPE_SIZE_LD_80bit_128);
+    /* Does not work for AVX2
     featureflags = getfeatureflags();
     if ((featureflags & SIMD_SUPPORT) == 0) {
       if (SIMD_SUPPORT == SIMD_SUPPORT_FOR_SSE2) {
         fprintf(stderr, "%li : This program %s requires SSE2 support.\n", time(0), argv[0]);
       }
-    /* Does not work for AVX2
       if (SIMD_SUPPORT == SIMD_SUPPORT_FOR_AVX2) {
         fprintf(stderr, "%li : This program %s requires AVX2 support.\n", time(0), argv[0]);
       }
-    */
       exit(1);
     }
+    */
     char userstring[16];      
     long i;
     userstring[15] = 0;
