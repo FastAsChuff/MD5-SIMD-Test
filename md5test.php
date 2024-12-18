@@ -1,6 +1,7 @@
 <?php
 
-function gettimems() { return floor(microtime(true) * 1000); }
+  function gettimems() { return floor(microtime(true) * 1000); }
+  
   echo "Table is power of 2 byte input size, ms per hash, and throughput in MB/s.\n";
   $mystring = "12";
   $twopow = 1;
